@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
+import java.lang.String;
 
 /*
 * making some changes to check whether it is reflected when pushed
@@ -214,6 +215,7 @@ public class AddressBook {
         showWelcomeMessage();
         processProgramArgs(args);
         loadDataFromStorage();
+
         while (true) {
             String userCommand = getUserInput();
             echoUserCommand(userCommand);
@@ -399,6 +401,9 @@ public class AddressBook {
      */
     private static String[] splitCommandWordAndArgs(String rawUserInput) {
         final String[] split =  rawUserInput.trim().split("\\s+", 2);
+        for(int i = 0; i < split.length; i++) {
+            split[i] = split[i].toLowerCase();
+        }
         return split.length == 2 ? split : new String[] { split[0] , "" }; // else case: no parameters
     }
 
